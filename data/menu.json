@@ -1,0 +1,106 @@
+{
+  "categories": [
+    {
+      "id": "signature",
+      "name": "Signature Shakes",
+      "items": [
+        {
+          "id": "sig-classic-vanilla",
+          "name": "Classic Vanilla",
+          "description": "Vanilla bean ice cream, oat milk, and a golden caramel swirl.",
+          "price": 6.5,
+          "image": "https://images.unsplash.com/photo-1481391032119-d89fee407e44?auto=format&fit=crop&w=800&q=80"
+        },
+        {
+          "id": "sig-sunset-caramel",
+          "name": "Sunset Caramel",
+          "description": "Toasted sugar, sea salt, and whipped cream with a caramel drizzle.",
+          "price": 7,
+          "image": "https://images.unsplash.com/photo-1461394823089-4c354c4e7ce3?auto=format&fit=crop&w=800&q=80"
+        },
+        {
+          "id": "sig-midnight-mocha",
+          "name": "Midnight Mocha",
+          "description": "Cold brew, dark cocoa, and espresso syrup with chocolate shavings.",
+          "price": 7.5,
+          "image": "https://images.unsplash.com/photo-1461009683693-342af2f2d6ce?auto=format&fit=crop&w=800&q=80"
+        },
+        {
+          "id": "sig-strawberry-swing",
+          "name": "Strawberry Swing",
+          "description": "Fresh strawberries, vanilla soft serve, and a bright berry glaze.",
+          "price": 7.25,
+          "image": "https://images.unsplash.com/photo-1505252585461-04db1eb84625?auto=format&fit=crop&w=800&q=80"
+        }
+      ]
+    },
+    {
+      "id": "protein",
+      "name": "Protein Shakes",
+      "items": [
+        {
+          "id": "pro-power-peanut",
+          "name": "Power Peanut",
+          "description": "Peanut butter, banana, whey protein, and cinnamon oat milk.",
+          "price": 8.5,
+          "image": "https://images.unsplash.com/photo-1542990253-0d0f5be5f0c7?auto=format&fit=crop&w=800&q=80"
+        },
+        {
+          "id": "pro-cocoa-core",
+          "name": "Cocoa Core",
+          "description": "Chocolate protein, almond milk, and cacao nib crunch.",
+          "price": 8,
+          "image": "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?auto=format&fit=crop&w=800&q=80"
+        },
+        {
+          "id": "pro-matcha-muscle",
+          "name": "Matcha Muscle",
+          "description": "Matcha, vanilla protein, and coconut milk with honey.",
+          "price": 8.25,
+          "image": "https://images.unsplash.com/photo-1517705008128-361805f42e86?auto=format&fit=crop&w=800&q=80"
+        },
+        {
+          "id": "pro-berry-bulk",
+          "name": "Berry Bulk",
+          "description": "Blueberries, strawberries, pea protein, and flax.",
+          "price": 8.75,
+          "image": "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?auto=format&fit=crop&w=800&q=80"
+        }
+      ]
+    },
+    {
+      "id": "sides",
+      "name": "Sides",
+      "items": [
+        {
+          "id": "side-protein-bites",
+          "name": "Protein Bites",
+          "description": "Chocolate oat bites with peanut butter and chia.",
+          "price": 4.5,
+          "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80"
+        },
+        {
+          "id": "side-mini-donuts",
+          "name": "Mini Donuts",
+          "description": "Warm cinnamon sugar minis with vanilla dip.",
+          "price": 5,
+          "image": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80"
+        },
+        {
+          "id": "side-fruit-cup",
+          "name": "Fresh Fruit Cup",
+          "description": "Seasonal fruit mix with mint and lime zest.",
+          "price": 4,
+          "image": "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?auto=format&fit=crop&w=800&q=80"
+        },
+        {
+          "id": "side-granola-parfait",
+          "name": "Granola Parfait",
+          "description": "Greek yogurt, honey, and toasted granola layers.",
+          "price": 5.5,
+          "image": "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?auto=format&fit=crop&w=800&q=80"
+        }
+      ]
+    }
+  ]
+}

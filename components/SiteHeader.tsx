@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { MenuIcon } from 'lucide-react'
 
 import { Cart } from '@/components/Cart'
 import {
@@ -19,7 +20,7 @@ export function SiteHeader() {
   return (
     <header className="header">
       <Link href="/" className="logo">
-        VIBE*BISTRO
+        VIBE
       </Link>
       <nav>
         {navItems.map((item) => (
@@ -35,12 +36,15 @@ export function SiteHeader() {
               className="btn-cta rounded-none md:hidden"
               aria-label="Open navigation menu"
             >
-              Menu
+              <span className="flex items-center gap-2">
+                <MenuIcon className="size-4" />
+                Menu
+              </span>
             </button>
           </SheetTrigger>
           <SheetContent
             side="left"
-            className="border-0"
+            className="border-0 w-full sm:w-3/4 sm:max-w-sm"
             style={{ background: 'var(--bg)', borderRight: 'var(--border)' }}
           >
             <SheetHeader

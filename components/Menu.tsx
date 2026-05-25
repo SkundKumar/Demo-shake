@@ -55,20 +55,27 @@ const categoryStyleMap: Record<string, React.CSSProperties> = {
 }
 
 function formatInr(price: number) {
-  const formatted = new Intl.NumberFormat('en-IN', {
+  return new Intl.NumberFormat('en-IN', {
+    style: 'currency',
+    currency: 'INR',
+    currencyDisplay: 'narrowSymbol',
     minimumFractionDigits: 0,
     maximumFractionDigits: 2,
   }).format(price)
-
-  return `INR ${formatted}`
 }
 
 export function Menu({ variant = 'featured', featuredCount = 4 }: MenuProps) {
-  const { addToCart } = useCart()
+  const { addToCart, updateQuantity, cartItems } = useCart()
   const menu = menuData as MenuData
   const [query, setQuery] = React.useState('')
   const searchId = React.useId()
   const isFeatured = variant === 'featured'
+
+  const cartQuantityById = React.useMemo(() => {
+    const map = new Map<string, number>()
+    cartItems.forEach((item) => map.set(item.id, item.quantity))
+    return map
+  }, [cartItems])
 
   const categories = React.useMemo(() => {
     const allCategories = menu.categories
@@ -175,11 +182,14 @@ export function Menu({ variant = 'featured', featuredCount = 4 }: MenuProps) {
             ) : null}
 
             <div className="menu-grid">
-              {category.items.map((item) => (
-                <Card
-                  key={item.id}
-                  className="menu-card rounded-none shadow-none gap-0 px-0 py-0"
-                >
+              {category.items.map((item) => {
+                const itemQuantity = cartQuantityById.get(item.id) ?? 0
+
+                return (
+                  <Card
+                    key={item.id}
+                    className="menu-card rounded-none shadow-none gap-0 px-0 py-0"
+                  >
                   <Badge
                     className="menu-tag rounded-none border-none"
                     style={categoryStyleMap[category.id]}
@@ -190,29 +200,58 @@ export function Menu({ variant = 'featured', featuredCount = 4 }: MenuProps) {
                   <div className="menu-card-body">
                     <div className="flex items-center justify-between mb-2.5">
                       <h3>{item.name}</h3>
-                      <span className="price">{formatInr(item.price)}</span>
+                        <span className="price shrink-0 font-mono tabular-nums">
+                        {formatInr(item.price)}
+                      </span>
                     </div>
                     <p className="text-[14px] text-[#666]">
                       {item.description}
                     </p>
                     <div className="mt-4">
-                      <Button
-                        className="btn-cta rounded-none w-full text-[var(--dark)]"
-                        onClick={() =>
-                          addToCart({
-                            id: item.id,
-                            name: item.name,
-                            price: item.price,
-                          })
-                        }
-                        aria-label={`Add ${item.name} to cart`}
-                      >
-                        Add to Cart
-                      </Button>
+                      {itemQuantity > 0 ? (
+                        <div className="flex items-center gap-2">
+                          <Button
+                            className="btn-cta rounded-none text-[var(--dark)] text-xs !px-3 !py-2 min-w-[36px]"
+                            onClick={() =>
+                              updateQuantity(item.id, itemQuantity - 1)
+                            }
+                            aria-label={`Decrease ${item.name} quantity`}
+                          >
+                            -
+                          </Button>
+                          <span className="min-w-[32px] text-center text-base font-bold">
+                            {itemQuantity}
+                          </span>
+                          <Button
+                            className="btn-cta rounded-none text-[var(--dark)] text-xs !px-3 !py-2 min-w-[36px]"
+                            onClick={() =>
+                              updateQuantity(item.id, itemQuantity + 1)
+                            }
+                            aria-label={`Increase ${item.name} quantity`}
+                          >
+                            +
+                          </Button>
+                        </div>
+                      ) : (
+                        <Button
+                          className="btn-cta rounded-none w-full text-[var(--dark)]"
+                          onClick={() =>
+                            addToCart({
+                              id: item.id,
+                              name: item.name,
+                              price: item.price,
+                            })
+                          }
+                          aria-label={`Add ${item.name} to cart`}
+                        >
+                          Add to Cart
+                        </Button>
+                      )}
                     </div>
                   </div>
-                </Card>
-              ))}
+                  </Card>
+                )
+              })}
             </div>
           </div>
         ))

@@ -19,7 +19,7 @@ export function SiteHeader() {
   return (
     <header className="header">
       <Link href="/" className="logo">
-        VIBE*BISTRO
+        VIBE
       </Link>
       <nav>
         {navItems.map((item) => (
@@ -30,14 +30,7 @@ export function SiteHeader() {
       </nav>
       <div className="flex items-center gap-2">
         <Sheet>
-          <SheetTrigger asChild>
-            <button
-              className="btn-cta rounded-none md:hidden"
-              aria-label="Open navigation menu"
-            >
-              Menu
-            </button>
-          </SheetTrigger>
+      
           <SheetContent
             side="left"
             className="border-0"

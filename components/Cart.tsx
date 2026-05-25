@@ -22,12 +22,13 @@ type CartProps = {
 }
 
 function formatInr(amount: number) {
-  const formatted = new Intl.NumberFormat('en-IN', {
+  return new Intl.NumberFormat('en-IN', {
+    style: 'currency',
+    currency: 'INR',
+    currencyDisplay: 'narrowSymbol',
     minimumFractionDigits: 0,
     maximumFractionDigits: 2,
   }).format(amount)
-
-  return `INR ${formatted}`
 }
 
 export function Cart({
@@ -72,25 +73,25 @@ export function Cart({
       </SheetTrigger>
       <SheetContent
         side="right"
-        className="border-0"
+        className="cart-sheet border-0 gap-0 overflow-hidden"
         style={{ background: 'var(--bg)', borderLeft: 'var(--border)' }}
       >
         <SheetHeader
-          className="border-b"
+          className="cart-sheet-header sticky top-0 z-10 border-b bg-[var(--bg)] p-4"
           style={{ borderBottom: 'var(--border)' }}
         >
           <SheetTitle
-            className="uppercase"
+            className="cart-sheet-title uppercase text-base sm:text-lg"
             style={{ fontFamily: 'Syne, sans-serif' }}
           >
             Your Cart
           </SheetTitle>
-          <SheetDescription className="text-[#666]">
+          <SheetDescription className="cart-sheet-description text-sm text-[#666]">
             Review your shakes and send the order to WhatsApp.
           </SheetDescription>
         </SheetHeader>
 
-        <div className="flex-1 overflow-y-auto px-4 pb-4">
+        <div className="cart-sheet-body flex-1 min-h-0 overflow-y-auto px-4 pb-6">
           {isEmpty ? (
             <div
               className="!mt-6 rounded-none bg-white !p-4 text-sm"
@@ -106,8 +107,8 @@ export function Cart({
                   className="bg-white !p-4"
                   style={{ border: 'var(--border)' }}
                 >
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
+                  <div className="cart-item-row">
+                    <div className="min-w-0">
                       <div
                         className="text-sm uppercase"
                         style={{ fontWeight: 800 }}
@@ -119,8 +120,8 @@ export function Cart({
                       </div>
                     </div>
                     <div
+                      className="cart-item-price shrink-0 text-base font-mono tabular-nums"
                       style={{
-                        fontFamily: 'Playfair Display, serif',
                         fontWeight: 700,
                         color: 'var(--secondary)',
                       }}
@@ -129,11 +130,10 @@ export function Cart({
                     </div>
                   </div>
 
-                  <div className="!mt-4 flex items-center gap-2">
+                  <div className="cart-item-controls !mt-4 flex flex-wrap items-center gap-3">
                     <Button
                       type="button"
-                      className="btn-cta rounded-none text-black"
-                      style={{ padding: '4px 12px', fontSize: '12px' }}
+                      className="btn-cta rounded-none text-black !px-3 !py-2 text-xs"
                       onClick={() =>
                         updateQuantity(item.id, item.quantity - 1)
                       }
@@ -141,13 +141,12 @@ export function Cart({
                     >
                       -
                     </Button>
-                    <span className="min-w-[32px] text-center font-bold">
+                    <span className="min-w-[32px] text-center text-base font-bold">
                       {item.quantity}
                     </span>
                     <Button
                       type="button"
-                      className="btn-cta rounded-none text-black"
-                      style={{ padding: '4px 12px', fontSize: '12px' }}
+                      className="btn-cta rounded-none text-black !px-3 !py-2 text-xs"
                       onClick={() =>
                         updateQuantity(item.id, item.quantity + 1)
                       }
@@ -163,16 +162,18 @@ export function Cart({
         </div>
 
         <SheetFooter
-          className="border-t"
+          className="cart-sheet-footer mt-auto border-t bg-[var(--bg)] p-4"
           style={{ borderTop: 'var(--border)' }}
         >
-          <div className="flex items-center !p-2 md:!p-4 justify-between text-sm font-bold uppercase">
+          <div className="cart-total-row flex items-center justify-between text-sm font-bold uppercase">
             <span>Total</span>
-            <span>{formatInr(cartTotal)}</span>
+            <span className="cart-total-value font-mono tabular-nums">
+              {formatInr(cartTotal)}
+            </span>
           </div>
           <Button
             type="button"
-            className="btn-cta text-black rounded-none w-full"
+            className="btn-cta cart-checkout-btn h-auto w-full rounded-none text-black !px-4 !py-3 text-sm whitespace-normal text-center leading-tight"
             onClick={handleCheckout}
             disabled={isEmpty}
           >

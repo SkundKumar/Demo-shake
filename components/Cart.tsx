@@ -73,7 +73,7 @@ export function Cart({
       </SheetTrigger>
       <SheetContent
         side="right"
-        className="cart-sheet border-0 gap-0 overflow-hidden"
+        className="cart-sheet w-full sm:w-3/4 sm:max-w-sm border-0 gap-0 overflow-hidden"
         style={{ background: 'var(--bg)', borderLeft: 'var(--border)' }}
       >
         <SheetHeader

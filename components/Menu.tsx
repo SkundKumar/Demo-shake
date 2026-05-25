@@ -54,14 +54,16 @@ const categoryStyleMap: Record<string, React.CSSProperties> = {
   sides: { background: 'var(--accent)', color: 'var(--dark)' },
 }
 
+const inrFormatter = new Intl.NumberFormat('en-IN', {
+  style: 'currency',
+  currency: 'INR',
+  currencyDisplay: 'narrowSymbol',
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 2,
+})
+
 function formatInr(price: number) {
-  return new Intl.NumberFormat('en-IN', {
-    style: 'currency',
-    currency: 'INR',
-    currencyDisplay: 'narrowSymbol',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 2,
-  }).format(price)
+  return inrFormatter.format(price)
 }
 
 export function Menu({ variant = 'featured', featuredCount = 4 }: MenuProps) {

@@ -47,14 +47,15 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    cursor: crosshair;
   }
 
   body {
     @apply bg-background text-foreground;
+
     font-family: "Space Grotesk", sans-serif;
     background-color: var(--bg);
     color: var(--dark);
@@ -72,6 +73,10 @@
 }
 
 @layer components {
+
+.crosshair {
+  cursor: crosshair;
+}
 
 header {
   height: 80px;

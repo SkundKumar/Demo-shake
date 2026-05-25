@@ -53,12 +53,12 @@ export function Cart({
             item.price * item.quantity,
           )})`,
       )
-      .join(', ')
+      .join('\n')
 
     const normalizedPhone = phoneNumber.replace(/\D/g, '')
     if (!normalizedPhone) return
 
-    const message = `Hello, I would like to order: ${orderItems} - Total: ${formatInr(cartTotal)}`
+    const message = `Hello, I would like to order:\n${orderItems}\nTotal: ${formatInr(cartTotal)}`
     const url = `https://wa.me/${normalizedPhone}?text=${encodeURIComponent(message)}`
 
     window.location.href = url
